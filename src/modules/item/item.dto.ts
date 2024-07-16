@@ -1,7 +1,6 @@
 export class CreateItemDto {
   id: number;
-  nome: string;
   qtde: number;
+  nome: string;
   descricao: string;
-  timestamps: true;
 }

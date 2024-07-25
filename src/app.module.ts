@@ -7,7 +7,11 @@ import { ItemModule } from './modules/item/item.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/GEVC'), // substitua com a URL do seu MongoDB
+    MongooseModule
+      .forRoot
+      //link do seu mongodb kk
+      (),
+
     DistintivoModule,
     EspecialidadeModule,
     UsuarioModule,

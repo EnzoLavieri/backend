@@ -1,5 +1,5 @@
 export class CreateItemDto {
-  id: number;
+  id: string;
   qtde: number;
   nome: string;
   descricao: string;

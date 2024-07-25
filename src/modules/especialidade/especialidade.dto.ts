@@ -1,5 +1,5 @@
 export class CreateEspecialidadeDto {
-  id: number;
+  id: string;
   qtde: number;
   nome: string;
   nivel: string;

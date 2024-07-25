@@ -32,7 +32,7 @@ export class Especialidade {
   nivel: number;
 
   @Prop({ enum: RamoConhecimento, type: String, required: true })
-  ramo: RamoConhecimento;
+  ramoConhecimento: RamoConhecimento;
   //precisa de @isenum??? verificar dps, mas ta funcinando
 
   // @Prop({ required: true })

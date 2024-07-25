@@ -1,7 +1,7 @@
 import { Ramo } from './distintivo.schema';
 
 export class CreateDistintivoDto {
-  id: number;
+  id: string;
   qtde: number;
   nome: string;
   descricao: string;

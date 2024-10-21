@@ -5,11 +5,13 @@ import { EspecialidadeModule } from './modules/especialidade/especialidade.modul
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { ItemModule } from './modules/item/item.module';
 import { AuthModule } from './auth/auth.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-    ),
+    MongooseModule.forRoot(process.env.MONGO_URI),
 
     DistintivoModule,
     EspecialidadeModule,

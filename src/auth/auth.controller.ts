@@ -17,8 +17,8 @@ export class AuthController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  async signIn(@Body() signInDto: Record<string, any>) {
+    return this.authService.signIn(signInDto.nomeUsuario, signInDto.password);
   }
 
   @Get('profile')

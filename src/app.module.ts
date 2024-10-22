@@ -12,7 +12,6 @@ dotenv.config();
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URI),
-
     DistintivoModule,
     EspecialidadeModule,
     UsuarioModule,

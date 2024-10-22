@@ -1,25 +1,28 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcryptjs';
 import { UsuarioService } from '../modules/usuario/usuario.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usuarioService: UsuarioService,
-    private jwtService: JwtService,
+    private readonly usuarioService: UsuarioService,
+    private readonly jwtService: JwtService,
   ) {}
 
-  async signIn(nomeUsuario: string, pass: string) {
-    const user = await this.usuarioService.findOne(nomeUsuario);
-    if (!user) {
-      throw new UnauthorizedException('Usuário não encontrado');
+  async validateUser(email: string, senha: string): Promise<any> {
+    const usuario = await this.usuarioService.findByEmail(email);
+    if (usuario && (await bcrypt.compare(senha, usuario.senha))) {
+      const { senha, ...result } = usuario;
+      return result;
     }
-    if (user.senha !== pass) {
-      throw new UnauthorizedException('Senha incorreta');
-    }
-    const payload = { nomeUsuario: user.nomeUsuario, sub: user.id };
+    return null;
+  }
+
+  async login(usuario: any) {
+    const payload = { email: usuario.email, sub: usuario.id }; //  trocar depois o login por nome do usuario?
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      access_token: this.jwtService.sign(payload),
     };
   }
 }

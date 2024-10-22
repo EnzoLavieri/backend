@@ -23,8 +23,12 @@ export class Usuario {
   @MaxLength(20, { message: 'O ID deve ter no máximo 20 caracteres' })
   nomeUsuario: string;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({ required: true })
+  /*zicou com a encriptacao
+  dps arrumo
+  maxlength: 20
   @MaxLength(20, { message: 'O ID deve ter no máximo 20 caracteres' })
+  */
   senha: string;
 
   @Prop({ enum: Classe, type: String, required: true })

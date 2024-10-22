@@ -1,28 +1,16 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Post,
-  Request,
-} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Public } from './decorators/public.decorator';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
-  @Public()
-  @HttpCode(HttpStatus.OK)
   @Post('login')
-  async signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.nomeUsuario, signInDto.password);
-  }
-
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
+  async login(@Body() body: { email: string; senha: string }) {
+    const usuario = await this.authService.validateUser(body.email, body.senha);
+    if (!usuario) {
+      return { message: 'Credenciais inválidas' };
+    }
+    return this.authService.login(usuario);
   }
 }

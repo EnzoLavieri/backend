@@ -11,9 +11,7 @@ dotenv.config();
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://devenzolavieri:39DH4WaDq313Eii1@inventorycluster.pnfmaae.mongodb.net/?retryWrites=true&w=majority&appName=InventoryCluster',
-    ),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     DistintivoModule,
     EspecialidadeModule,
     UsuarioModule,
